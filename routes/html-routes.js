@@ -71,4 +71,51 @@ router.get("/dashboard/:username", function (req, res) {
 
 
 
+router.get("/projectscreated/:username", function (req, res) {
+  var relationships = [];
+  var projects = [];
+  // find the userid for the username
+  db.User.findAll({
+      where: {
+          username: req.params.username
+      }
+  })
+      .then(function (dbUser) {
+          //   console.log(dbUser[0].dataValues)
+          // find the project/user relationships
+          db.UserProject.findAll({
+              where: {
+                  UserId: dbUser[0].dataValues.id
+              }
+          }).then(function (dbUserProject) {
+              // create an array of relationships related to the user
+              dbUserProject.forEach(function (connection) {
+                  relationships.push(connection.dataValues);
+              })
+              // console.log(projects)
+              // get the project titles
+
+              relationships.forEach(function (rel) {
+                  db.Project.findAll({
+                      where: {
+                          id: rel.ProjectId
+                      }
+                  }).then(function (dbProject) {
+                      // console.log(dbProject[0].dataValues);
+                      projects.push(dbProject[0].dataValues)
+                      // console.log(projects)
+                      return projects
+                  })
+              })
+          })
+      }).then(function () {
+          const ret = () => {
+              console.log(projects)
+              return res.render("projectscreated", {projectsCreated: projects})
+          }
+          setTimeout(ret, 50);
+      })
+})
+
+
 module.exports = router;

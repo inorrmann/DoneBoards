@@ -1,15 +1,15 @@
 <div class="sign-in-jumbotron">
     <div id="user-info" class="jumbotron jumbotron-fluid jumbotron-landing-page">
-      <div class="index-container text-center sign-in-container">
-        <h1 class="index-title pt-4 mb-4">Projects</h1>
-{{#each projectsCreated}}
-        <div class="text-center">
-          <button class="btn btn-info btn-lg d-inline my-4 mr-2" id="viewButton">
-{{title}}
-          </button>
+        <div class="index-container text-center sign-in-container">
+            <h1 class="index-title pt-4 mb-4">Current Projects</h1>
+            {{#each projectsCreated}}
+            <div class="text-center">
+                <button class="btn btn-info btn-lg d-inline my-1 mr-2" id="viewButton">
+                    {{title}}
+                </button>
 
+            </div>
+            {{/each}}
         </div>
-        {{/each}}
-      </div>
     </div>
-  </div>
+</div>

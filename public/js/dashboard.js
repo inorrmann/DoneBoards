@@ -12,18 +12,25 @@
 $("#viewButton").on("click", function () {
     console.log("clicked");
     let username = document.querySelector("#user-info [name=username]").textContent;
-    // console.log(username);
+    location.href = `/projectscreated/${username}`
 
-    $.ajax({
-        method: "GET",
-        url: `/api/projects/${username}`
-    }).then(function (data) {
-        console.log(data);
-        location.href = `/projectscreated/${data.username}`
-
-        // console.log("ajax call completed")
-    });
 })
+
+// $("#viewButton").on("click", function () {
+//     console.log("clicked");
+//     let username = document.querySelector("#user-info [name=username]").textContent;
+//     // console.log(username);
+
+//     $.ajax({
+//         method: "GET",
+//         url: `/api/projects/${username}`
+//     }).then(function (data) {
+//         console.log(data);
+//         location.href = `/projectscreated/${data.username}`
+
+//         // console.log("ajax call completed")
+//     });
+// })
 
 
 
